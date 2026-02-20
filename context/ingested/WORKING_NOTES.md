@@ -76,3 +76,23 @@ From `context/gqscd-ideas.html`:
 - For legal/QSCD mapping work, start from eIDAS anchors above and map to Annex II outcomes.
 - For evaluation and conformance structure, use Part 1 (PP/ST/TOE) + Part 3 (assurance classes/EALs) + CEM (work units and verdicts).
 - For repo drafting style and requirement structure, align with the existing GQSCD requirement and error-code pattern.
+
+## Samsung/Knox Additions (2026-02-20)
+
+- Added source files:
+  - `context/samsung-galaxy-s25-ultra.html`
+  - `context/samsung-knox-mobile-security-whitepaper.html`
+  - `context/samsung-knox-vault.html`
+  - `context/samsung-knox-tima-keystore.html`
+- Added snippets in `context/ingested/` for all four pages.
+- Added metadata entries to `context/ingested/context-index.json` and regenerated `context/ingested/CONTEXT_INGESTED.md`.
+
+## Samsung/Android/BSI Additions (2026-02-20)
+
+- Added source files:
+  - `context/samsung-news-s25-series-true-ai-companion.html`
+  - `context/android-security-key-attestation.html`
+  - `context/bsi-pp-0084.html`
+- Added snippets in `context/ingested/` for all three pages.
+- Added metadata entries to `context/ingested/context-index.json` and regenerated `context/ingested/CONTEXT_INGESTED.md`.
+

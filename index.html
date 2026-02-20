@@ -13,7 +13,7 @@
     ></script>
     <script class="remove">
       var respecConfig = {
-        specStatus: "base",
+        specStatus: "unofficial",
         editors: [
           {
             name: "Jori Lehtinen",
@@ -143,6 +143,41 @@
             href: "https://z-base.github.io/gqscd/",
             publisher: "z-base",
           },
+          SAMSUNGS25US: {
+            title: "Galaxy S25 Ultra | Features & Highlights | Samsung US",
+            href: "https://www.samsung.com/us/smartphones/galaxy-s25-ultra/",
+            publisher: "Samsung",
+            status: "Product page",
+          },
+          SAMSUNGNEWS25: {
+            title:
+              "Samsung Galaxy S25 Series Sets the Standard of AI Phone as a True AI Companion",
+            href: "https://news.samsung.com/global/samsung-galaxy-s25-series-sets-the-standard-of-ai-phone-as-a-true-ai-companion",
+            publisher: "Samsung Global Newsroom",
+            status: "January 23, 2025",
+          },
+          KNOXVAULT: {
+            title: "Knox Vault | Samsung Knox Documentation",
+            href: "https://docs.samsungknox.com/admin/fundamentals/whitepaper/samsung-knox-mobile-security/system-security/knox-vault/",
+            publisher: "Samsung Knox",
+            status: "Updated March 7, 2025",
+          },
+          KNOXTIMA: {
+            title: "TIMA Keystore | Samsung Knox Documentation",
+            href: "https://docs.samsungknox.com/dev/knox-sdk/features/mdm-providers/keystores/tima-keystore/tima-keystore/",
+            publisher: "Samsung Knox",
+          },
+          ANDROIDATTEST: {
+            title:
+              "Verify hardware-backed key pairs with key attestation | Android Developers",
+            href: "https://developer.android.com/privacy-and-security/security-key-attestation",
+            publisher: "Android Developers",
+          },
+          BSIPP0084: {
+            title: "BSI-CC-PP-0084-2014 publication record",
+            href: "https://www.bsi.bund.de/SharedDocs/Zertifikate_CC/PP/aktuell/PP_0084.html",
+            publisher: "BSI",
+          },
         },
       };
     </script>
@@ -189,37 +224,52 @@
         background: #fff;
         padding: 0.8rem;
       }
+      .illus img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+      }
+      .two-up {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.8rem;
+      }
     </style>
   </head>
   <body>
     <section id="abstract">
       <p>
-        This document maps Common Criteria and protection profile clauses to a
-        practical local-signing phone architecture, with concrete component
-        examples and direct source references for each mapped clause.
+        This report maps Common Criteria and SSCD PP clauses to one concrete
+        local-signing TOE: Samsung Galaxy S25 Ultra (model SM-S938), with
+        clause-by-clause component mapping and linked authority references.
       </p>
     </section>
 
     <section id="sotd" class="override">
       <h2>Status of This Document</h2>
       <p>
-        This document is an unofficial informative report, dated February 20,
-        2026. It is not a specification and has no official standing.
+        This document is an unofficial draft report, dated February 20, 2026.
+        It is not a specification, not a standards-track draft, and has no
+        official standing.
       </p>
       <p>
         This document is not a legal finding of qualified status. Legal
-        qualified status requires the certification/listing path under eIDAS
-        Article 29, Article 30, and Article 31 [[EIDAS910]].
+        qualified status requires the certification and listing path under
+        eIDAS Article 29, Article 30, and Article 31 [[EIDAS910]].
+      </p>
+      <p>
+        Clause-level mapping in this report uses publicly downloadable SSCD PP
+        documents (Part 2 and Part 5), CC Part 2/3, and CEM; EN 419 241 is
+        included as migration-target reference via CEN-CENELEC search
+        [[CENSEARCH]].
       </p>
       <p>
         AI-assistance transparency: this report was produced with assistance
-        from GPT-5.3-Codex. Final scope, source selection, and publication
-        decisions remain under human editorial control.
-      </p>
-      <p>
-        Clause-level mapping here uses publicly downloadable SSCD PP documents
-        (Part 2 and Part 5) plus CC Part 2/3 and CEM. EN 419 241 is included as
-        migration target reference via CEN-CENELEC search [[CENSEARCH]].
+        from GPT-5.3-Codex under human editorial control. Implementation
+        references for this edition include Samsung Galaxy S25 Ultra and Samsung
+        Knox technical documentation [[SAMSUNGS25US]] [[SAMSUNGNEWS25]]
+        [[KNOXVAULT]] [[KNOXTIMA]].
       </p>
     </section>
 
@@ -236,6 +286,13 @@
           <tr>
             <td>TOE</td>
             <td>Target of Evaluation: exact evaluated boundary.</td>
+          </tr>
+          <tr>
+            <td>SoC</td>
+            <td>
+              System on Chip: the main integrated processor platform (CPU/GPU/NPU
+              and security interfaces).
+            </td>
           </tr>
           <tr>
             <td>SFR</td>
@@ -303,8 +360,8 @@
           <tr>
             <td>Local</td>
             <td>
-              In this report, signing where SCD stays inside the end-user device
-              TOE boundary during key use.
+              In this report, signing where SCD stays inside the Galaxy S25
+              Ultra TOE boundary during key use.
             </td>
           </tr>
         </tbody>
@@ -312,12 +369,33 @@
     </section>
 
     <section>
-      <h2>Illustration: Candidate Phone TOE Boundary</h2>
+      <h2>Illustration: Samsung Galaxy S25 Ultra TOE Boundary</h2>
+      <p>
+        TOE selected in this report: Samsung Galaxy S25 Ultra (model SM-S938),
+        on stock Samsung firmware with trusted boot intact [[SAMSUNGS25US]]
+        [[KNOXTIMA]].
+      </p>
+      <figure class="illus">
+        <div class="two-up">
+          <img
+            src="https://image-us.samsung.com/us/smartphones/galaxy-s25-ultra/images/galaxy-s25-ultra-viewer-initial-pc.jpg"
+            alt="Samsung Galaxy S25 Ultra official product image."
+          />
+          <img
+            src="https://docs.samsungknox.com/admin/fundamentals/whitepaper/samsung-knox-mobile-security/assets/knox-vault.png"
+            alt="Samsung Knox Vault architecture image."
+          />
+        </div>
+        <figcaption>
+          Official product and security-subsystem visuals used for this TOE
+          mapping [[SAMSUNGS25US]] [[KNOXVAULT]].
+        </figcaption>
+      </figure>
       <figure class="illus">
         <svg
           viewBox="0 0 980 300"
           role="img"
-          aria-label="Phone TOE boundary for local signing"
+          aria-label="Galaxy S25 Ultra TOE boundary for local signing"
         >
           <rect
             x="15"
@@ -329,103 +407,103 @@
             stroke="#bcccdc"
           />
           <text x="35" y="45" font-size="20" fill="#102a43">
-            Candidate local-QSCD phone architecture
+            Galaxy S25 Ultra local-signing TOE architecture
           </text>
           <rect
             x="35"
             y="65"
-            width="210"
+            width="235"
             height="185"
             rx="8"
             fill="#eef2ff"
             stroke="#a5b4fc"
           />
-          <text x="48" y="92" font-size="14" fill="#1e3a8a">
-            Secure element / enclave
+          <text x="48" y="92" font-size="14" fill="#1e3a8a">Knox Vault</text>
+          <text x="48" y="114" font-size="12" fill="#1e3a8a">
+            - StrongBox key generation
           </text>
-          <text x="48" y="114" font-size="12" fill="#1e3a8a">- keygen</text>
           <text x="48" y="131" font-size="12" fill="#1e3a8a">
-            - sign operation
+            - non-exportable private key use
           </text>
           <text x="48" y="148" font-size="12" fill="#1e3a8a">
-            - key destruction
+            - key destruction / invalidation
           </text>
           <text x="48" y="165" font-size="12" fill="#1e3a8a">
-            - tamper response
+            - tamper and side-channel controls
           </text>
 
           <rect
-            x="265"
+            x="285"
             y="65"
-            width="220"
+            width="235"
             height="185"
             rx="8"
             fill="#ecfeff"
             stroke="#67e8f9"
           />
-          <text x="278" y="92" font-size="14" fill="#0c4a6e">
-            Trusted OS / TEE service
+          <text x="298" y="92" font-size="14" fill="#0c4a6e">
+            TrustZone TIMA / KeyMint path
           </text>
-          <text x="278" y="114" font-size="12" fill="#0c4a6e">
-            - auth policy
+          <text x="298" y="114" font-size="12" fill="#0c4a6e">
+            - trusted boot measurements
           </text>
-          <text x="278" y="131" font-size="12" fill="#0c4a6e">
-            - role management
+          <text x="298" y="131" font-size="12" fill="#0c4a6e">
+            - auth and key-access policy checks
           </text>
-          <text x="278" y="148" font-size="12" fill="#0c4a6e">
-            - trusted channel endpoint
+          <text x="298" y="148" font-size="12" fill="#0c4a6e">
+            - fail-secure key operation gating
           </text>
-          <text x="278" y="165" font-size="12" fill="#0c4a6e">
-            - audit hooks
+          <text x="298" y="165" font-size="12" fill="#0c4a6e">
+            - keystore API mediation
           </text>
 
           <rect
-            x="505"
+            x="535"
             y="65"
-            width="210"
+            width="195"
             height="185"
             rx="8"
             fill="#fff7ed"
             stroke="#fdba74"
           />
-          <text x="518" y="92" font-size="14" fill="#7c2d12">
-            Trusted UI path
+          <text x="548" y="92" font-size="14" fill="#7c2d12">
+            One UI / system UI
           </text>
-          <text x="518" y="114" font-size="12" fill="#7c2d12">
-            - show DTBS/R
+          <text x="548" y="114" font-size="12" fill="#7c2d12">
+            - display DTBS/R
           </text>
-          <text x="518" y="131" font-size="12" fill="#7c2d12">
-            - capture user intent
+          <text x="548" y="131" font-size="12" fill="#7c2d12">
+            - collect user auth
           </text>
-          <text x="518" y="148" font-size="12" fill="#7c2d12">
-            - protect VAD entry
+          <text x="548" y="148" font-size="12" fill="#7c2d12">
+            - user intent ceremony
           </text>
 
           <rect
-            x="735"
+            x="745"
             y="65"
-            width="210"
+            width="200"
             height="185"
             rx="8"
             fill="#f0fdf4"
             stroke="#86efac"
           />
-          <text x="748" y="92" font-size="14" fill="#14532d">
-            Signature app (SCA)
+          <text x="758" y="92" font-size="14" fill="#14532d">
+            Signing app (SCA)
           </text>
-          <text x="748" y="114" font-size="12" fill="#14532d">
-            - build DTBS
+          <text x="758" y="114" font-size="12" fill="#14532d">
+            - build canonical DTBS
           </text>
-          <text x="748" y="131" font-size="12" fill="#14532d">
-            - request sign
+          <text x="758" y="131" font-size="12" fill="#14532d">
+            - call keystore sign API
           </text>
-          <text x="748" y="148" font-size="12" fill="#14532d">
-            - validate output
+          <text x="758" y="148" font-size="12" fill="#14532d">
+            - verify returned signature
           </text>
         </svg>
         <figcaption>
-          The full phone is not automatically the TOE. The evaluated boundary
-          must be explicit in the ST [[CCPART1]].
+          The full consumer phone is not automatically the evaluated TOE; the ST
+          still must define exact security boundaries [[CCPART1]].
         </figcaption>
       </figure>
     </section>
@@ -445,29 +523,36 @@
           <tr>
             <td>Annex II(1)(a)</td>
             <td>SCD confidentiality.</td>
-            <td>Keep signing key only in secure hardware boundary.</td>
+            <td>
+              Keep signing key in Galaxy S25 Ultra secure hardware boundary
+              (Knox Vault / TrustZone keystore path).
+            </td>
             <td>Annex II(1)(a) [[EIDAS910]]</td>
           </tr>
           <tr>
             <td>Annex II(1)(b)</td>
             <td>SCD practically unique.</td>
             <td>
-              On-device key generation with robust entropy and key identity
-              control.
+              On-device key generation on Galaxy S25 Ultra with hardware-backed
+              key identity control.
             </td>
             <td>Annex II(1)(b) [[EIDAS910]]</td>
           </tr>
           <tr>
             <td>Annex II(1)(c)</td>
             <td>SCD non-derivability and anti-forgery.</td>
-            <td>Certified algorithms plus side-channel/fault defenses.</td>
+            <td>
+              Certified algorithms plus side-channel/fault defense claims in the
+              Knox Vault security subsystem.
+            </td>
             <td>Annex II(1)(c) [[EIDAS910]]</td>
           </tr>
           <tr>
             <td>Annex II(1)(d)</td>
             <td>Signatory protection against others.</td>
             <td>
-              Strong local auth and anti-hammering tied to signing command.
+              Strong local auth and anti-hammering tied to signing command in
+              Knox-backed auth flow.
             </td>
             <td>Annex II(1)(d) [[EIDAS910]]</td>
           </tr>
@@ -475,7 +560,8 @@
             <td>Annex II(2)</td>
             <td>No silent DTBS alteration; show data before signing.</td>
             <td>
-              Trusted display and explicit user intent capture before release.
+              Explicit DTBS display and user intent capture in One UI signing
+              ceremony with integrity binding controls.
             </td>
             <td>Annex II(2) [[EIDAS910]]</td>
           </tr>
@@ -502,6 +588,20 @@
           plus the catalogue entry point [[EN419241CAT]].
         </li>
         <li>
+          Samsung Galaxy S25 Ultra implementation references: Samsung product
+          page and public launch specification table [[SAMSUNGS25US]]
+          [[SAMSUNGNEWS25]].
+        </li>
+        <li>
+          Samsung security subsystem references for mapping evidence: Knox Vault
+          and TIMA keystore documentation [[KNOXVAULT]] [[KNOXTIMA]].
+        </li>
+        <li>
+          Hardware-evidence and attestation references used in closure actions:
+          Android key attestation guidance [[ANDROIDATTEST]] and BSI PP0084
+          publication record [[BSIPP0084]].
+        </li>
+        <li>
           Related European standards discovery entry points [[CENSEARCH]]
           [[ETSISTD]].
         </li>
@@ -514,8 +614,91 @@
     </section>
 
     <section>
+      <h2>Samsung Galaxy S25 Ultra Specification Snapshot</h2>
+      <table class="map-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Official value</th>
+            <th>Why it matters for local-QSCD mapping</th>
+            <th>Authority reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Target device and model</td>
+            <td>Galaxy S25 Ultra, model SM-S938.</td>
+            <td>Pins the TOE to one concrete device family and SKU line.</td>
+            <td>Samsung US product page metadata [[SAMSUNGS25US]]</td>
+          </tr>
+          <tr>
+            <td>SoC platform</td>
+            <td>Snapdragon 8 Elite for Galaxy.</td>
+            <td>
+              Defines the hardware execution platform for secure key services.
+            </td>
+            <td>
+              Samsung US and Samsung Newsroom [[SAMSUNGS25US]] [[SAMSUNGNEWS25]]
+            </td>
+          </tr>
+          <tr>
+            <td>OS and UI stack</td>
+            <td>Android 15 with One UI 7.</td>
+            <td>
+              Identifies the runtime path used for signing ceremony and user
+              interaction.
+            </td>
+            <td>Samsung Newsroom specification table [[SAMSUNGNEWS25]]</td>
+          </tr>
+          <tr>
+            <td>Memory and storage variants</td>
+            <td>12GB RAM with 256GB, 512GB, or 1TB storage.</td>
+            <td>
+              Sets operational envelope for on-device key and policy data.
+            </td>
+            <td>Samsung Newsroom specification table [[SAMSUNGNEWS25]]</td>
+          </tr>
+          <tr>
+            <td>Battery and reliability profile</td>
+            <td>5,000 mAh battery.</td>
+            <td>
+              Useful for availability assumptions in local signing workflows.
+            </td>
+            <td>Samsung Newsroom specification table [[SAMSUNGNEWS25]]</td>
+          </tr>
+          <tr>
+            <td>Security subsystem</td>
+            <td>Knox Vault + TrustZone/TIMA keystore path.</td>
+            <td>
+              Core basis for hardware-backed key generation, key protection, and
+              controlled signing operations.
+            </td>
+            <td>
+              Samsung Knox technical documentation [[KNOXVAULT]] [[KNOXTIMA]]
+            </td>
+          </tr>
+          <tr>
+            <td>Long-term support statement</td>
+            <td>
+              Seven generations of OS upgrades and seven years of security
+              updates.
+            </td>
+            <td>
+              Helps maintenance planning for operational lifetime of a signing
+              profile.
+            </td>
+            <td>Samsung Newsroom launch statement [[SAMSUNGNEWS25]]</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
       <h2>Family Map: FCS (Cryptographic Support)</h2>
-      <p>Each table row is one clause subsection.</p>
+      <p>
+        Each table row is one clause subsection, mapped to Galaxy S25 Ultra
+        components.
+      </p>
       <table class="map-table">
         <thead>
           <tr>
@@ -530,23 +713,43 @@
           <tr>
             <td>Part 2 §10.2.2.1 FCS_CKM.1</td>
             <td>Generate SCD/SVD using specified algorithms and parameters.</td>
-            <td>Generate keypair in secure element/enclave only.</td>
+            <td>
+              Galaxy S25 Ultra: generate SCD/SVD in Knox Vault StrongBox /
+              KeyMint hardware path only [[KNOXVAULT]] [[KNOXTIMA]].
+            </td>
             <td>Reject non-hardware key generation paths in ST.</td>
-            <td>SSCD PP Part 2 §10.2.2.1 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.2.1 [[PPSSCD2]]; Samsung keystore hardware
+              path [[KNOXVAULT]] [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.2.2 FCS_CKM.4</td>
             <td>Destroy keys according to specified method.</td>
-            <td>Secure key wipe/invalidate in secure hardware.</td>
+            <td>
+              Galaxy S25 Ultra: key invalidation and hardware-protected key
+              storage lifecycle in Knox Vault/TIMA keystore stack [[KNOXVAULT]]
+              [[KNOXTIMA]].
+            </td>
             <td>Add residual-data verification tests.</td>
-            <td>SSCD PP Part 2 §10.2.2.2 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.2.2 [[PPSSCD2]]; Samsung keystore behavior
+              [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.2.3 FCS_COP.1</td>
             <td>Perform cryptographic signing operation.</td>
-            <td>Sign inside secure hardware using non-exportable SCD.</td>
+            <td>
+              Galaxy S25 Ultra: private-key operations are kept inside
+              TrustZone/Knox Vault keystore boundary with non-exportable key
+              intent [[KNOXVAULT]] [[KNOXTIMA]].
+            </td>
             <td>Constrain algorithm profiles explicitly in ST assignments.</td>
-            <td>SSCD PP Part 2 §10.2.2.3 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.2.3 [[PPSSCD2]]; Samsung keystore and
+              StrongBox notes [[KNOXVAULT]] [[KNOXTIMA]]
+            </td>
           </tr>
         </tbody>
       </table>
@@ -554,7 +757,10 @@
 
     <section>
       <h2>Family Map: FDP (User Data Protection)</h2>
-      <p>Each table row is one clause subsection.</p>
+      <p>
+        Each table row is one clause subsection, mapped to Galaxy S25 Ultra
+        components.
+      </p>
       <table class="map-table">
         <thead>
           <tr>
@@ -569,72 +775,139 @@
           <tr>
             <td>Part 2 §10.2.3.1 FDP_ACC.1/SCD/SVD_Generation</td>
             <td>Access control for key generation objects.</td>
-            <td>Policy-gated key generation in TOE.</td>
+            <td>
+              Galaxy S25 Ultra: key generation is policy-gated in Knox/TIMA
+              keystore with trusted boot state checks [[KNOXTIMA]].
+            </td>
             <td>Publish role-policy matrix in ST.</td>
-            <td>SSCD PP Part 2 §10.2.3.1 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.3.1 [[PPSSCD2]]; Samsung keystore controls
+              [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.3.2 FDP_ACF.1/SCD/SVD_Generation</td>
             <td>Attribute-based generation rules.</td>
-            <td>Role attributes enforced by secure key manager.</td>
+            <td>
+              Galaxy S25 Ultra: enforce key attributes and usage constraints in
+              hardware-backed keystore policy objects [[KNOXTIMA]]
+              [[ANDROIDATTEST]].
+            </td>
             <td>Add negative authorization tests.</td>
-            <td>SSCD PP Part 2 §10.2.3.2 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.3.2 [[PPSSCD2]]; Android key attestation
+              properties [[ANDROIDATTEST]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.3.3 FDP_ACC.1/SVD_Transfer</td>
             <td>Access control for SVD transfer.</td>
-            <td>Allow only controlled SVD export endpoint.</td>
+            <td>
+              Galaxy S25 Ultra: allow only public-key/certificate export via
+              approved API endpoint; private key remains non-exportable in
+              hardware [[KNOXTIMA]] [[KNOXVAULT]].
+            </td>
             <td>Bind export to enrollment/certification state.</td>
-            <td>SSCD PP Part 2 §10.2.3.3 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.3.3 [[PPSSCD2]]; Samsung key boundary notes
+              [[KNOXVAULT]] [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.3.4 FDP_ACF.1/SVD_Transfer</td>
             <td>Rules for SVD transfer decisions.</td>
-            <td>Trusted channel and role checks before release.</td>
+            <td>
+              Galaxy S25 Ultra: perform release checks on trusted boot state,
+              key purpose, and authenticated app flow before SVD transfer
+              [[KNOXTIMA]] [[ANDROIDATTEST]].
+            </td>
             <td>Add explicit deny rules for untrusted channels.</td>
-            <td>SSCD PP Part 2 §10.2.3.4 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.3.4 [[PPSSCD2]]; Android attestation guidance
+              [[ANDROIDATTEST]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.3.5 FDP_ACC.1/Signature-creation</td>
             <td>Access control on sign operation.</td>
-            <td>Sign command accepted only in authenticated session.</td>
+            <td>
+              Galaxy S25 Ultra: signing only in authenticated session, with key
+              access controlled by Knox Vault/TIMA path [[KNOXVAULT]]
+              [[KNOXTIMA]].
+            </td>
             <td>Require per-signature intent token.</td>
-            <td>SSCD PP Part 2 §10.2.3.5 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.3.5 [[PPSSCD2]]; Knox authentication gating
+              [[KNOXVAULT]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.3.6 FDP_ACF.1/Signature-creation</td>
             <td>Attribute rules for sign operation.</td>
-            <td>Check user role, key status, and policy flags.</td>
+            <td>
+              Galaxy S25 Ultra: enforce key purpose, auth freshness, and boot
+              integrity state before sign execution [[KNOXTIMA]]
+              [[ANDROIDATTEST]].
+            </td>
             <td>Add default-deny for background requests.</td>
-            <td>SSCD PP Part 2 §10.2.3.6 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.3.6 [[PPSSCD2]]; Samsung trusted boot checks
+              [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.3.7 FDP_RIP.1</td>
             <td>Residual information protection.</td>
-            <td>Wipe temporary signing buffers after use.</td>
+            <td>
+              Galaxy S25 Ultra: partially mapped through hardware-backed
+              keystore isolation; explicit buffer-wipe evidence still needs ST
+              test artifacts.
+            </td>
             <td>Include memory-clearing evidence in tests.</td>
-            <td>SSCD PP Part 2 §10.2.3.7 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.3.7 [[PPSSCD2]]; implementation context
+              [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.3.8 FDP_SDI.2/Persistent</td>
             <td>Persistent data integrity monitoring and action.</td>
-            <td>Integrity tags over key metadata and policy data.</td>
+            <td>
+              Galaxy S25 Ultra: trusted boot and keystore integrity checks gate
+              key usage and storage operations [[KNOXTIMA]].
+            </td>
             <td>Add anti-rollback counters.</td>
-            <td>SSCD PP Part 2 §10.2.3.8 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.3.8 [[PPSSCD2]]; trusted boot linkage
+              [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.3.9 FDP_SDI.2/DTBS</td>
             <td>DTBS integrity monitoring and action.</td>
-            <td>Hash-bind DTBS/R through signing pipeline.</td>
+            <td>
+              Galaxy S25 Ultra: implement DTBS hash-binding in SCA and pass only
+              canonicalized payloads to keystore sign API.
+            </td>
             <td>Define canonical DTBS/R serialization.</td>
-            <td>SSCD PP Part 2 §10.2.3.9 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.3.9 [[PPSSCD2]]; attestation-assisted design
+              [[ANDROIDATTEST]]
+            </td>
           </tr>
           <tr>
             <td>Part 5 §9.1.2 FDP_UIT.1/DTBS</td>
             <td>Integrity for DTBS data exchange path.</td>
-            <td>Authenticated and integrity-protected SCA-to-TOE channel.</td>
+            <td>
+              Galaxy S25 Ultra: authenticated and integrity-protected SCA-to-TOE
+              channel, with key attestation and signed request envelope where
+              needed [[ANDROIDATTEST]] [[KNOXTIMA]].
+            </td>
             <td>If opaque channel, wrap DTBS in signed request envelope.</td>
-            <td>SSCD PP Part 5 §9.1.2 [[PPSSCD5]]</td>
+            <td>
+              SSCD PP Part 5 §9.1.2 [[PPSSCD5]]; Android attestation guidance
+              [[ANDROIDATTEST]]
+            </td>
           </tr>
         </tbody>
       </table>
@@ -642,7 +915,10 @@
 
     <section>
       <h2>Family Map: FIA (Identification and Authentication)</h2>
-      <p>Each table row is one clause subsection.</p>
+      <p>
+        Each table row is one clause subsection, mapped to Galaxy S25 Ultra
+        components.
+      </p>
       <table class="map-table">
         <thead>
           <tr>
@@ -657,30 +933,54 @@
           <tr>
             <td>Part 2 §10.2.4.1 FIA_UID.1</td>
             <td>User identification timing.</td>
-            <td>Identify signatory context before protected operations.</td>
+            <td>
+              Galaxy S25 Ultra: bind signatory identity context before protected
+              keystore operations in the signing ceremony.
+            </td>
             <td>Bind identity context to signing session id.</td>
-            <td>SSCD PP Part 2 §10.2.4.1 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.4.1 [[PPSSCD2]]; Knox auth architecture
+              [[KNOXVAULT]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.4.2 FIA_UAU.1</td>
             <td>User authentication timing.</td>
-            <td>Biometric/PIN before sign release.</td>
+            <td>
+              Galaxy S25 Ultra: biometric/PIN gating before sign release through
+              Knox Vault-backed auth path [[KNOXVAULT]].
+            </td>
             <td>Step-up auth for high-risk signatures.</td>
-            <td>SSCD PP Part 2 §10.2.4.2 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.4.2 [[PPSSCD2]]; Samsung auth controls
+              [[KNOXVAULT]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.4.3 FIA_AFL.1</td>
             <td>Authentication failure handling.</td>
-            <td>Retry limits, lockout, secure delay.</td>
+            <td>
+              Galaxy S25 Ultra: retry limits and increasing timeout behavior are
+              documented for Knox Vault authentication [[KNOXVAULT]].
+            </td>
             <td>Expose lockout policy as TSF-managed data.</td>
-            <td>SSCD PP Part 2 §10.2.4.3 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.4.3 [[PPSSCD2]]; Knox Vault timeout model
+              [[KNOXVAULT]]
+            </td>
           </tr>
           <tr>
             <td>Part 5 §9.1.1 FIA_UAU.1 refinement</td>
             <td>Authentication flow adapted for trusted channel/VAD path.</td>
-            <td>Use trusted VAD path tied to signing ceremony.</td>
+            <td>
+              Galaxy S25 Ultra: use system-auth path tied to signing ceremony;
+              strong anti-overlay proof remains a closure item for ST evidence.
+            </td>
             <td>Add secure attention mode for VAD entry.</td>
-            <td>SSCD PP Part 5 §9.1.1 [[PPSSCD5]]</td>
+            <td>
+              SSCD PP Part 5 §9.1.1 [[PPSSCD5]]; implementation anchors
+              [[KNOXVAULT]] [[KNOXTIMA]]
+            </td>
           </tr>
         </tbody>
       </table>
@@ -688,7 +988,10 @@
 
     <section>
       <h2>Family Map: FMT (Security Management)</h2>
-      <p>Each table row is one clause subsection.</p>
+      <p>
+        Each table row is one clause subsection, mapped to Galaxy S25 Ultra
+        components.
+      </p>
       <table class="map-table">
         <thead>
           <tr>
@@ -703,76 +1006,133 @@
           <tr>
             <td>Part 2 §10.2.5.1 FMT_SMR.1</td>
             <td>Maintain security roles.</td>
-            <td>Explicit Admin and Signatory roles in TOE policy engine.</td>
+            <td>
+              Galaxy S25 Ultra: consumer profile is mostly single-user; explicit
+              Admin vs Signatory separation needs managed deployment policy.
+            </td>
             <td>Do not collapse both roles silently in production.</td>
-            <td>SSCD PP Part 2 §10.2.5.1 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.5.1 [[PPSSCD2]]; Knox policy API context
+              [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.5.2 FMT_SMF.1</td>
             <td>List TOE management functions.</td>
             <td>
-              Declare key lifecycle, auth, recovery, and policy operations.
+              Galaxy S25 Ultra: key lifecycle, auth, certificate policy, and
+              keystore control functions are available through Knox policy
+              paths.
             </td>
             <td>Complete all ST assignments from PP application notes.</td>
-            <td>SSCD PP Part 2 §10.2.5.2 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.5.2 [[PPSSCD2]]; Samsung policy functions
+              [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.5.3 FMT_MOF.1</td>
             <td>Restrict security function behavior management.</td>
-            <td>Only allowed role enables signing function.</td>
+            <td>
+              Galaxy S25 Ultra: restrict sign-enable behavior through managed
+              policy and app-layer authorization gates.
+            </td>
             <td>Add immutable event logs for enable/disable actions.</td>
-            <td>SSCD PP Part 2 §10.2.5.3 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.5.3 [[PPSSCD2]]; Knox policy APIs
+              [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.5.4 FMT_MSA.1/Admin</td>
             <td>Admin management of security attributes.</td>
-            <td>Admin manages enrollment and policy attributes.</td>
+            <td>
+              Galaxy S25 Ultra: admin-side certificate and keystore policy
+              controls exist in managed Knox deployment flows [[KNOXTIMA]].
+            </td>
             <td>Require authenticated admin channel and approvals.</td>
-            <td>SSCD PP Part 2 §10.2.5.4 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.5.4 [[PPSSCD2]]; Knox certificate policy
+              controls [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.5.5 FMT_MSA.1/Signatory</td>
             <td>Signatory management of security attributes.</td>
-            <td>Signatory controls own activation policy attributes.</td>
+            <td>
+              Galaxy S25 Ultra: signatory-side controls exist at app level; add
+              explicit user policy UI for certification-grade traceability.
+            </td>
             <td>Add user-facing policy transparency UI.</td>
-            <td>SSCD PP Part 2 §10.2.5.5 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.5.5 [[PPSSCD2]]; Samsung platform context
+              [[SAMSUNGS25US]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.5.6 FMT_MSA.2</td>
             <td>Accept only secure attribute values.</td>
-            <td>Validate attribute schema and allowed ranges.</td>
+            <td>
+              Galaxy S25 Ultra: enforce strict schema/range validation in
+              signing app and policy service.
+            </td>
             <td>Reject weak/default values by policy.</td>
-            <td>SSCD PP Part 2 §10.2.5.6 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.5.6 [[PPSSCD2]]; implementation closure in
+              ST/TSS
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.5.7 FMT_MSA.3</td>
             <td>Static attribute initialization.</td>
-            <td>Secure defaults on key/object creation.</td>
+            <td>
+              Galaxy S25 Ultra: initialize keys with strict defaults (hardware
+              backing, user-auth gating, non-exportability).
+            </td>
             <td>Demonstrate defaults are non-bypassable.</td>
-            <td>SSCD PP Part 2 §10.2.5.7 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.5.7 [[PPSSCD2]]; Android key property
+              evidence [[ANDROIDATTEST]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.5.8 FMT_MSA.4</td>
             <td>Attribute value inheritance rules.</td>
             <td>
-              Inherited policy remains as strict as parent security context.
+              Galaxy S25 Ultra: define policy inheritance so child contexts
+              never relax parent signing constraints.
             </td>
             <td>Define deterministic inheritance matrix in ST.</td>
-            <td>SSCD PP Part 2 §10.2.5.8 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.5.8 [[PPSSCD2]]; implementation closure in
+              ST/TSS
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.5.9 FMT_MTD.1/Admin</td>
             <td>Admin TSF data management.</td>
-            <td>Authorized admin updates TSF config data.</td>
+            <td>
+              Galaxy S25 Ultra: admin TSF updates must run through authenticated
+              managed channels and signed policy delivery.
+            </td>
             <td>Apply dual control for critical admin changes.</td>
-            <td>SSCD PP Part 2 §10.2.5.9 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.5.9 [[PPSSCD2]]; Knox managed policy context
+              [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.5.10 FMT_MTD.1/Signatory</td>
             <td>Signatory TSF data management.</td>
-            <td>User controls own signing profile metadata.</td>
+            <td>
+              Galaxy S25 Ultra: user controls own signing profile metadata in
+              app layer; add signed change records for auditability.
+            </td>
             <td>Add signed change records for TSF data updates.</td>
-            <td>SSCD PP Part 2 §10.2.5.10 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.5.10 [[PPSSCD2]]; implementation closure in
+              ST/TSS
+            </td>
           </tr>
         </tbody>
       </table>
@@ -780,7 +1140,10 @@
 
     <section>
       <h2>Family Map: FPT (Protection of the TSF)</h2>
-      <p>Each table row is one clause subsection.</p>
+      <p>
+        Each table row is one clause subsection, mapped to Galaxy S25 Ultra
+        components.
+      </p>
       <table class="map-table">
         <thead>
           <tr>
@@ -795,49 +1158,81 @@
           <tr>
             <td>Part 2 §10.2.6.1 FPT_EMSEC.1 (Part 5 names FPT_EMS.1)</td>
             <td>Emanation resistance.</td>
-            <td>Use evaluated secure element with side-channel protections.</td>
+            <td>
+              Galaxy S25 Ultra: map to Knox Vault components described as
+              resistant to side-channel and fault attacks, with PP0084 EAL4+
+              evaluation claim for underlying components [[KNOXVAULT]]
+              [[BSIPP0084]].
+            </td>
             <td>
               If full-phone evidence is weak, narrow TOE to evaluated secure
               component.
             </td>
             <td>
               SSCD PP Part 2 §10.2.6.1 [[PPSSCD2]], Part 5 naming note
-              [[PPSSCD5]]
+              [[PPSSCD5]]; Knox Vault and BSI publication record [[KNOXVAULT]]
+              [[BSIPP0084]]
             </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.6.2 FPT_FLS.1</td>
             <td>Fail secure on failure.</td>
             <td>
-              If self-test/integrity check fails, block signing and protect SCD.
+              Galaxy S25 Ultra: trusted boot measurements gate keystore
+              operation; when integrity fails, key storage/use is refused
+              [[KNOXTIMA]].
             </td>
             <td>
               Define exact secure-failure state transitions and test them.
             </td>
-            <td>SSCD PP Part 2 §10.2.6.2 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.6.2 [[PPSSCD2]]; Knox trusted-boot gating
+              [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.6.3 FPT_PHP.1</td>
             <td>Passive detection of physical attack.</td>
-            <td>Tamper state checks and secure-boot integrity monitoring.</td>
+            <td>
+              Galaxy S25 Ultra: Knox Vault documentation describes tamper
+              detection hardware monitor and secure integrity-dependent behavior
+              [[KNOXVAULT]].
+            </td>
             <td>
               Expose measurable tamper state outputs to evaluation evidence.
             </td>
-            <td>SSCD PP Part 2 §10.2.6.3 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.6.3 [[PPSSCD2]]; Knox Vault tamper monitoring
+              [[KNOXVAULT]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.6.4 FPT_PHP.3</td>
             <td>Resistance to physical attack scenarios.</td>
-            <td>Active tamper protections in secure processor package.</td>
+            <td>
+              Galaxy S25 Ultra: Knox Vault subsystem is described as
+              tamper-proof and resistant to probing, side-channel, and fault
+              injection attack classes [[KNOXVAULT]].
+            </td>
             <td>Select hardware SKU with public high-assurance claims.</td>
-            <td>SSCD PP Part 2 §10.2.6.4 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.6.4 [[PPSSCD2]]; Samsung security hardware
+              claims [[KNOXVAULT]]
+            </td>
           </tr>
           <tr>
             <td>Part 2 §10.2.6.5 FPT_TST.1</td>
             <td>Self-test and integrity test functions.</td>
-            <td>Power-on and periodic TSF self-tests.</td>
+            <td>
+              Galaxy S25 Ultra: trusted boot and integrity measurement path
+              provides startup validation hooks for security functions
+              [[KNOXTIMA]].
+            </td>
             <td>Publish startup/runtime test coverage in evaluator package.</td>
-            <td>SSCD PP Part 2 §10.2.6.5 [[PPSSCD2]]</td>
+            <td>
+              SSCD PP Part 2 §10.2.6.5 [[PPSSCD2]]; trusted boot measurement
+              model [[KNOXTIMA]]
+            </td>
           </tr>
         </tbody>
       </table>
@@ -845,7 +1240,10 @@
 
     <section>
       <h2>Family Map: FTP (Trusted Channel/Path)</h2>
-      <p>Each table row is one clause subsection.</p>
+      <p>
+        Each table row is one clause subsection, mapped to Galaxy S25 Ultra
+        components.
+      </p>
       <table class="map-table">
         <thead>
           <tr>
@@ -860,18 +1258,29 @@
           <tr>
             <td>Part 5 §9.1.3 FTP_ITC.1/VAD</td>
             <td>Trusted channel for VAD/auth path.</td>
-            <td>Secure auth path from trusted UI/auth block to TOE.</td>
+            <td>
+              Galaxy S25 Ultra: system authentication path plus Knox-backed key
+              gating; add explicit anti-overlay controls in the signing app.
+            </td>
             <td>Add secure attention and anti-overlay guarantees.</td>
-            <td>SSCD PP Part 5 §9.1.3 [[PPSSCD5]]</td>
+            <td>
+              SSCD PP Part 5 §9.1.3 [[PPSSCD5]]; implementation anchors
+              [[KNOXVAULT]] [[KNOXTIMA]]
+            </td>
           </tr>
           <tr>
             <td>Part 5 §9.1.4 FTP_ITC.1/DTBS</td>
             <td>Trusted channel for DTBS path.</td>
             <td>
-              Authenticated integrity-protected DTBS channel from SCA to TOE.
+              Galaxy S25 Ultra: authenticated integrity-protected DTBS channel
+              from SCA to TOE, verified with key attestation and payload binding
+              controls [[ANDROIDATTEST]].
             </td>
             <td>Bind DTBS hash shown to user with final sign command.</td>
-            <td>SSCD PP Part 5 §9.1.4 [[PPSSCD5]]</td>
+            <td>
+              SSCD PP Part 5 §9.1.4 [[PPSSCD5]]; Android key attestation
+              [[ANDROIDATTEST]]
+            </td>
           </tr>
         </tbody>
       </table>
@@ -882,7 +1291,9 @@
       <p>
         PP Part 2 and Part 5 both target EAL4 augmented with AVA_VAN.5
         [[PPSSCD2]] [[PPSSCD5]]. The outcome is “methodically designed, tested,
-        and reviewed,” plus advanced vulnerability analysis [[CCPART3]].
+        and reviewed,” plus advanced vulnerability analysis [[CCPART3]]. For the
+        Galaxy S25 Ultra TOE, these assurance blocks still require a product ST
+        and evaluator evidence package.
       </p>
       <table class="map-table">
         <thead>
@@ -1031,25 +1442,30 @@
             stroke-width="2"
           />
         </svg>
+        <figcaption>
+          High-level certification path from TOE definition to scheme
+          certification [[CCPART1]] [[CCPART3]] [[CEMR5]].
+        </figcaption>
       </figure>
     </section>
 
     <section>
-      <h2>Real-World Snapshot (As of 2026-02-20 Context Capture)</h2>
+      <h2>Galaxy S25 Ultra Readiness Snapshot (2026-02-20)</h2>
       <div class="card">
         <p>
-          1. CC portal includes many QSCD/SSCD product records (for example
-          SafeSign, ChipDoc, CombICAO, AKD eID, and DocuSign local-signing
-          entries) [[CCPROD]].
+          1. S25 Ultra has publicly documented hardware-backed signing building
+          blocks (Knox Vault + TrustZone/TIMA keystore path) that map well to
+          core local-QSCD cryptographic controls [[KNOXVAULT]] [[KNOXTIMA]].
         </p>
         <p>
-          2. CC portal also includes many mobility-certified smartphone records
-          (Apple, Pixel, Samsung, and others), but those records are generally
-          not QSCD claims by themselves [[CCPROD]] [[CCPP]].
+          2. Samsung documentation links Knox Vault components to PP0084 EAL4+
+          evaluated components, which helps for hardware assurance positioning
+          in a narrowed TOE boundary [[KNOXVAULT]] [[BSIPP0084]].
         </p>
         <p>
-          3. In this captured dataset, no record appears as both “mobility
-          category” and explicit “QSCD/SSCD” claim string at the same time.
+          3. This still does not equal legal qualified status by itself.
+          Certification and listing still follow the formal eIDAS path and
+          scheme process [[EIDAS910]] [[CCPROD]].
         </p>
       </div>
     </section>
@@ -1067,36 +1483,36 @@
           <tr>
             <td>Trusted display proof for DTBS review before signing</td>
             <td>
-              Implement dedicated trusted UI mode and cryptographically bind
-              displayed DTBS hash to signature command.
+              On S25 Ultra, add dedicated trusted-sign mode in app flow and
+              cryptographically bind displayed DTBS hash to signature command.
             </td>
           </tr>
           <tr>
             <td>Strong physical/emanation evidence at full-phone scope</td>
             <td>
-              Narrow TOE to secure element/enclave and compose with minimal
-              trusted software boundary.
+              Narrow S25 TOE to Knox Vault + minimal trusted keystore/software
+              boundary for cert scope clarity.
             </td>
           </tr>
           <tr>
             <td>Admin/signatory role separation on consumer OS</td>
             <td>
               Define explicit role model in ST and enforce role-restricted
-              management APIs.
+              management APIs in managed Knox deployment.
             </td>
           </tr>
           <tr>
             <td>Opaque secure-channel internals in commodity stacks</td>
             <td>
               Add explicit signed request/response wrapper between SCA and TOE
-              channel endpoints.
+              channel endpoints, plus attestation verification.
             </td>
           </tr>
           <tr>
             <td>Insufficient AVA_VAN.5 depth evidence</td>
             <td>
-              Run pre-cert penetration plan covering TEE escape, overlay attack,
-              side-channel, and fault injection vectors.
+              Run pre-cert penetration plan for S25 covering TEE escape, UI
+              overlay attack, side-channel, and fault injection vectors.
             </td>
           </tr>
         </tbody>
@@ -1106,9 +1522,10 @@
     <section>
       <h2>Bottom Line</h2>
       <p>
-        A high-end phone can be profiled toward local-QSCD behavior if its TOE
-        boundary is strict, keys stay hardware-bound, trusted channels are
-        explicit, and ST/SAR evidence is complete.
+        Samsung Galaxy S25 Ultra can be profiled toward local-QSCD behavior if
+        the TOE boundary is strict around Knox Vault/keystore components, keys
+        stay hardware-bound, trusted channels are explicit, and ST/SAR evidence
+        is complete.
       </p>
     </section>
   </body>

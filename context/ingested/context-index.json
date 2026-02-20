@@ -1,5 +1,45 @@
 [
   {
+    "file": "android-security-key-attestation.html",
+    "path": "context/android-security-key-attestation.html",
+    "size_bytes": 288827,
+    "sha256": "ec5606daacaecbcd703bc7c706eb8c0e380d82800410554847e74fac4488accc",
+    "type": "html",
+    "status": "ok",
+    "title": "Verify hardware-backed key pairs with key attestation &nbsp;|&nbsp; Security &nbsp;|&nbsp; Android Developers",
+    "text_chars": 30847,
+    "term_hits": {
+      "qscd": 0,
+      "common_criteria": 0,
+      "protection_profile": 0,
+      "security_target": 0,
+      "eidas": 0,
+      "qualified_signature": 0,
+      "qualified_seal": 0
+    },
+    "snippet_file": "context/ingested/android-security-key-attestation.snippet.txt"
+  },
+  {
+    "file": "bsi-pp-0084.html",
+    "path": "context/bsi-pp-0084.html",
+    "size_bytes": 62443,
+    "sha256": "6338ec4d364797b2d22fbe435aa977ec320cf1b654fa482d97d20d91d8783a3b",
+    "type": "html",
+    "status": "ok",
+    "title": "BSI - Bundesamt für Sicherheit in der Informationstechnik - BSI-CC-PP-0084-2014",
+    "text_chars": 8218,
+    "term_hits": {
+      "qscd": 0,
+      "common_criteria": 4,
+      "protection_profile": 15,
+      "security_target": 0,
+      "eidas": 0,
+      "qualified_signature": 0,
+      "qualified_seal": 0
+    },
+    "snippet_file": "context/ingested/bsi-pp-0084.snippet.txt"
+  },
+  {
     "file": "CCPART1V3.1R5.pdf",
     "path": "context/CCPART1V3.1R5.pdf",
     "size_bytes": 1327388,
@@ -381,5 +421,105 @@
       "qualified_seal": 0
     },
     "snippet_file": "context/ingested/iso-15408-3-72893.snippet.txt"
+  },
+  {
+    "file": "samsung-galaxy-s25-ultra.html",
+    "path": "context/samsung-galaxy-s25-ultra.html",
+    "size_bytes": 1508834,
+    "sha256": "4106ccfff83da6db9d458e273334f78a0450bc639c04d3f1df9f799114e65790",
+    "type": "html",
+    "status": "ok",
+    "title": "Galaxy S25 Ultra | Features &amp; Highlights | Samsung US",
+    "text_chars": 77545,
+    "term_hits": {
+      "qscd": 0,
+      "common_criteria": 0,
+      "protection_profile": 0,
+      "security_target": 0,
+      "eidas": 0,
+      "qualified_signature": 0,
+      "qualified_seal": 0
+    },
+    "snippet_file": "context/ingested/samsung-galaxy-s25-ultra.snippet.txt"
+  },
+  {
+    "file": "samsung-knox-mobile-security-whitepaper.html",
+    "path": "context/samsung-knox-mobile-security-whitepaper.html",
+    "size_bytes": 55279,
+    "sha256": "6c008256106f812fae306b1eb5d7e25e8ab6bd58438f791a5bdb677b5ad23b77",
+    "type": "html",
+    "status": "ok",
+    "title": "Introduction to Samsung Knox mobile security | Fundamentals | Samsung Knox Documentation",
+    "text_chars": 6568,
+    "term_hits": {
+      "qscd": 0,
+      "common_criteria": 0,
+      "protection_profile": 0,
+      "security_target": 0,
+      "eidas": 0,
+      "qualified_signature": 0,
+      "qualified_seal": 0
+    },
+    "snippet_file": "context/ingested/samsung-knox-mobile-security-whitepaper.snippet.txt"
+  },
+  {
+    "file": "samsung-knox-tima-keystore.html",
+    "path": "context/samsung-knox-tima-keystore.html",
+    "size_bytes": 124231,
+    "sha256": "f5a27f7ea2ac24d7721a934d0e28f086ae67da5707363a71e50931fef316ecae",
+    "type": "html",
+    "status": "ok",
+    "title": "TIMA Keystore | Knox SDK | Samsung Knox Documentation",
+    "text_chars": 16786,
+    "term_hits": {
+      "qscd": 0,
+      "common_criteria": 0,
+      "protection_profile": 0,
+      "security_target": 0,
+      "eidas": 0,
+      "qualified_signature": 0,
+      "qualified_seal": 0
+    },
+    "snippet_file": "context/ingested/samsung-knox-tima-keystore.snippet.txt"
+  },
+  {
+    "file": "samsung-knox-vault.html",
+    "path": "context/samsung-knox-vault.html",
+    "size_bytes": 66584,
+    "sha256": "9021804748de2c3c3d41f072210fdd34a5de2e371506d4c3790d1a650730be24",
+    "type": "html",
+    "status": "ok",
+    "title": "Knox Vault | Fundamentals | Samsung Knox Documentation",
+    "text_chars": 15185,
+    "term_hits": {
+      "qscd": 0,
+      "common_criteria": 1,
+      "protection_profile": 0,
+      "security_target": 0,
+      "eidas": 0,
+      "qualified_signature": 0,
+      "qualified_seal": 0
+    },
+    "snippet_file": "context/ingested/samsung-knox-vault.snippet.txt"
+  },
+  {
+    "file": "samsung-news-s25-series-true-ai-companion.html",
+    "path": "context/samsung-news-s25-series-true-ai-companion.html",
+    "size_bytes": 221746,
+    "sha256": "dfd31f9c763237dc9334332498be09b8d259a6a6cdaf79e88f797ce223358d6c",
+    "type": "html",
+    "status": "ok",
+    "title": "Samsung Galaxy S25 Series Sets the Standard of AI Phone as a True AI Companion &#8211; Samsung Global Newsroom",
+    "text_chars": 26475,
+    "term_hits": {
+      "qscd": 0,
+      "common_criteria": 0,
+      "protection_profile": 0,
+      "security_target": 0,
+      "eidas": 0,
+      "qualified_signature": 0,
+      "qualified_seal": 0
+    },
+    "snippet_file": "context/ingested/samsung-news-s25-series-true-ai-companion.snippet.txt"
   }
 ]

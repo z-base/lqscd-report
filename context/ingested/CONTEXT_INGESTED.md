@@ -2,6 +2,22 @@
 
 Generated from local files in `context/`.
 
+## android-security-key-attestation.html
+- Type: `html`
+- Size: `288827` bytes
+- Title: Verify hardware-backed key pairs with key attestation &nbsp;|&nbsp; Security &nbsp;|&nbsp; Android Developers
+- Status: `ok`
+- Term hits: `qscd=0`, `common_criteria=0`, `protection_profile=0`, `security_target=0`, `eidas=0`, `qualified_signature=0`, `qualified_seal=0`
+- Snippet: `context/ingested/android-security-key-attestation.snippet.txt`
+
+## bsi-pp-0084.html
+- Type: `html`
+- Size: `62443` bytes
+- Title: BSI - Bundesamt für Sicherheit in der Informationstechnik - BSI-CC-PP-0084-2014
+- Status: `ok`
+- Term hits: `qscd=0`, `common_criteria=4`, `protection_profile=15`, `security_target=0`, `eidas=0`, `qualified_signature=0`, `qualified_seal=0`
+- Snippet: `context/ingested/bsi-pp-0084.snippet.txt`
+
 ## CCPART1V3.1R5.pdf
 - Type: `pdf`
 - Size: `1327388` bytes
@@ -156,3 +172,44 @@ Generated from local files in `context/`.
 - Status: `ok`
 - Term hits: `qscd=0`, `common_criteria=0`, `protection_profile=0`, `security_target=0`, `eidas=0`, `qualified_signature=0`, `qualified_seal=0`
 - Snippet: `context/ingested/iso-15408-3-72893.snippet.txt`
+
+## samsung-galaxy-s25-ultra.html
+- Type: `html`
+- Size: `1508834` bytes
+- Title: Galaxy S25 Ultra | Features &amp; Highlights | Samsung US
+- Status: `ok`
+- Term hits: `qscd=0`, `common_criteria=0`, `protection_profile=0`, `security_target=0`, `eidas=0`, `qualified_signature=0`, `qualified_seal=0`
+- Snippet: `context/ingested/samsung-galaxy-s25-ultra.snippet.txt`
+
+## samsung-knox-mobile-security-whitepaper.html
+- Type: `html`
+- Size: `55279` bytes
+- Title: Introduction to Samsung Knox mobile security | Fundamentals | Samsung Knox Documentation
+- Status: `ok`
+- Term hits: `qscd=0`, `common_criteria=0`, `protection_profile=0`, `security_target=0`, `eidas=0`, `qualified_signature=0`, `qualified_seal=0`
+- Snippet: `context/ingested/samsung-knox-mobile-security-whitepaper.snippet.txt`
+
+## samsung-knox-tima-keystore.html
+- Type: `html`
+- Size: `124231` bytes
+- Title: TIMA Keystore | Knox SDK | Samsung Knox Documentation
+- Status: `ok`
+- Term hits: `qscd=0`, `common_criteria=0`, `protection_profile=0`, `security_target=0`, `eidas=0`, `qualified_signature=0`, `qualified_seal=0`
+- Snippet: `context/ingested/samsung-knox-tima-keystore.snippet.txt`
+
+## samsung-knox-vault.html
+- Type: `html`
+- Size: `66584` bytes
+- Title: Knox Vault | Fundamentals | Samsung Knox Documentation
+- Status: `ok`
+- Term hits: `qscd=0`, `common_criteria=1`, `protection_profile=0`, `security_target=0`, `eidas=0`, `qualified_signature=0`, `qualified_seal=0`
+- Snippet: `context/ingested/samsung-knox-vault.snippet.txt`
+
+## samsung-news-s25-series-true-ai-companion.html
+- Type: `html`
+- Size: `221746` bytes
+- Title: Samsung Galaxy S25 Series Sets the Standard of AI Phone as a True AI Companion &#8211; Samsung Global Newsroom
+- Status: `ok`
+- Term hits: `qscd=0`, `common_criteria=0`, `protection_profile=0`, `security_target=0`, `eidas=0`, `qualified_signature=0`, `qualified_seal=0`
+- Snippet: `context/ingested/samsung-news-s25-series-true-ai-companion.snippet.txt`
+
