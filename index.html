@@ -18,6 +18,10 @@
             name: "Jori Lehtinen",
             url: "https://github.com/jortsupetterson",
           },
+          {
+            name: "GPT-5.3-Codex",
+            url: "https://openai.com/index/introducing-gpt-5-3-codex/",
+          },
         ],
         github: "z-base/lqscd-report",
         shortName: "qscd-phone-map",
@@ -71,7 +75,8 @@
             status: "2012",
           },
           PPAPPNOTE: {
-            title: "QSCD Application Note for PP0059/PP0071/PP0072/PP0075/PP0076",
+            title:
+              "QSCD Application Note for PP0059/PP0071/PP0072/PP0075/PP0076",
             href: "https://www.commoncriteriaportal.org/nfs/ccpfiles/files/ppfiles/PP0059_PP0071_PP0072_PP0075_PP0076_QSCD_Application_Note_pdf.pdf",
             publisher: "CC Portal",
             status: "Application note",
@@ -92,7 +97,8 @@
             publisher: "CEN-CENELEC",
           },
           EN419241CAT: {
-            title: "CEN-CENELEC standards catalogue (EN 419 241 series entry point)",
+            title:
+              "CEN-CENELEC standards catalogue (EN 419 241 series entry point)",
             href: "https://standards.cencenelec.eu/dyn/www/f?p=205:110:0::::FSP_LANG_ID:25&cs=1F6C8A1C6F8C5E9F0C0E4B4F2B4D0C5F3",
             publisher: "CEN-CENELEC",
           },
@@ -205,6 +211,11 @@
         Article 29, Article 30, and Article 31 [[EIDAS910]].
       </p>
       <p>
+        AI-assistance transparency: this report was produced with assistance
+        from GPT-5.3-Codex. Final scope, source selection, and publication
+        decisions remain under human editorial control.
+      </p>
+      <p>
         Clause-level mapping here uses publicly downloadable SSCD PP documents
         (Part 2 and Part 5) plus CC Part 2/3 and CEM. EN 419 241 is included as
         migration target reference via CEN-CENELEC search [[CENSEARCH]].
@@ -221,19 +232,80 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>TOE</td><td>Target of Evaluation: exact evaluated boundary.</td></tr>
-          <tr><td>SFR</td><td>Security Functional Requirement: what the TOE must do.</td></tr>
-          <tr><td>SAR</td><td>Security Assurance Requirement: what evidence depth is required.</td></tr>
-          <tr><td>EAL</td><td>Evaluation Assurance Level package (for this profile: EAL4+).</td></tr>
-          <tr><td>PP</td><td>Protection Profile for a class of products.</td></tr>
-          <tr><td>ST</td><td>Security Target for one concrete TOE implementation.</td></tr>
-          <tr><td>SCD</td><td>Signature Creation Data: the private signing key used to create signatures.</td></tr>
-          <tr><td>SVD</td><td>Signature Verification Data: the corresponding public key used to verify signatures.</td></tr>
-          <tr><td>DTBS</td><td>Data to be signed.</td></tr>
-          <tr><td>PKI</td><td>Certificate chain, trust anchors, revocation/validity checks, and signer certificate lifecycle in app and backend policy services.</td></tr>
-          <tr><td>SAM</td><td>Secure Access Module: a tamper-resistant component used to protect keys and enforce controlled cryptographic operations.</td></tr>
-          <tr><td>QSCD</td><td>Qualified Signature Creation Device as defined in eIDAS Article 3(23) and Annex II [[EIDAS910]].</td></tr>
-          <tr><td>Local</td><td>In this report, signing where SCD stays inside the end-user device TOE boundary during key use.</td></tr>
+          <tr>
+            <td>TOE</td>
+            <td>Target of Evaluation: exact evaluated boundary.</td>
+          </tr>
+          <tr>
+            <td>SFR</td>
+            <td>Security Functional Requirement: what the TOE must do.</td>
+          </tr>
+          <tr>
+            <td>SAR</td>
+            <td>
+              Security Assurance Requirement: what evidence depth is required.
+            </td>
+          </tr>
+          <tr>
+            <td>EAL</td>
+            <td>
+              Evaluation Assurance Level package (for this profile: EAL4+).
+            </td>
+          </tr>
+          <tr>
+            <td>PP</td>
+            <td>Protection Profile for a class of products.</td>
+          </tr>
+          <tr>
+            <td>ST</td>
+            <td>Security Target for one concrete TOE implementation.</td>
+          </tr>
+          <tr>
+            <td>SCD</td>
+            <td>
+              Signature Creation Data: the private signing key used to create
+              signatures.
+            </td>
+          </tr>
+          <tr>
+            <td>SVD</td>
+            <td>
+              Signature Verification Data: the corresponding public key used to
+              verify signatures.
+            </td>
+          </tr>
+          <tr>
+            <td>DTBS</td>
+            <td>Data to be signed.</td>
+          </tr>
+          <tr>
+            <td>PKI</td>
+            <td>
+              Certificate chain, trust anchors, revocation/validity checks, and
+              signer certificate lifecycle in app and backend policy services.
+            </td>
+          </tr>
+          <tr>
+            <td>SAM</td>
+            <td>
+              Secure Access Module: a tamper-resistant component used to protect
+              keys and enforce controlled cryptographic operations.
+            </td>
+          </tr>
+          <tr>
+            <td>QSCD</td>
+            <td>
+              Qualified Signature Creation Device as defined in eIDAS Article
+              3(23) and Annex II [[EIDAS910]].
+            </td>
+          </tr>
+          <tr>
+            <td>Local</td>
+            <td>
+              In this report, signing where SCD stays inside the end-user device
+              TOE boundary during key use.
+            </td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -241,34 +313,114 @@
     <section>
       <h2>Illustration: Candidate Phone TOE Boundary</h2>
       <figure class="illus">
-        <svg viewBox="0 0 980 300" role="img" aria-label="Phone TOE boundary for local signing">
-          <rect x="15" y="15" width="950" height="270" rx="14" fill="#f8fafc" stroke="#bcccdc" />
-          <text x="35" y="45" font-size="20" fill="#102a43">Candidate local-QSCD phone architecture</text>
-          <rect x="35" y="65" width="210" height="185" rx="8" fill="#eef2ff" stroke="#a5b4fc" />
-          <text x="48" y="92" font-size="14" fill="#1e3a8a">Secure element / enclave</text>
+        <svg
+          viewBox="0 0 980 300"
+          role="img"
+          aria-label="Phone TOE boundary for local signing"
+        >
+          <rect
+            x="15"
+            y="15"
+            width="950"
+            height="270"
+            rx="14"
+            fill="#f8fafc"
+            stroke="#bcccdc"
+          />
+          <text x="35" y="45" font-size="20" fill="#102a43">
+            Candidate local-QSCD phone architecture
+          </text>
+          <rect
+            x="35"
+            y="65"
+            width="210"
+            height="185"
+            rx="8"
+            fill="#eef2ff"
+            stroke="#a5b4fc"
+          />
+          <text x="48" y="92" font-size="14" fill="#1e3a8a">
+            Secure element / enclave
+          </text>
           <text x="48" y="114" font-size="12" fill="#1e3a8a">- keygen</text>
-          <text x="48" y="131" font-size="12" fill="#1e3a8a">- sign operation</text>
-          <text x="48" y="148" font-size="12" fill="#1e3a8a">- key destruction</text>
-          <text x="48" y="165" font-size="12" fill="#1e3a8a">- tamper response</text>
+          <text x="48" y="131" font-size="12" fill="#1e3a8a">
+            - sign operation
+          </text>
+          <text x="48" y="148" font-size="12" fill="#1e3a8a">
+            - key destruction
+          </text>
+          <text x="48" y="165" font-size="12" fill="#1e3a8a">
+            - tamper response
+          </text>
 
-          <rect x="265" y="65" width="220" height="185" rx="8" fill="#ecfeff" stroke="#67e8f9" />
-          <text x="278" y="92" font-size="14" fill="#0c4a6e">Trusted OS / TEE service</text>
-          <text x="278" y="114" font-size="12" fill="#0c4a6e">- auth policy</text>
-          <text x="278" y="131" font-size="12" fill="#0c4a6e">- role management</text>
-          <text x="278" y="148" font-size="12" fill="#0c4a6e">- trusted channel endpoint</text>
-          <text x="278" y="165" font-size="12" fill="#0c4a6e">- audit hooks</text>
+          <rect
+            x="265"
+            y="65"
+            width="220"
+            height="185"
+            rx="8"
+            fill="#ecfeff"
+            stroke="#67e8f9"
+          />
+          <text x="278" y="92" font-size="14" fill="#0c4a6e">
+            Trusted OS / TEE service
+          </text>
+          <text x="278" y="114" font-size="12" fill="#0c4a6e">
+            - auth policy
+          </text>
+          <text x="278" y="131" font-size="12" fill="#0c4a6e">
+            - role management
+          </text>
+          <text x="278" y="148" font-size="12" fill="#0c4a6e">
+            - trusted channel endpoint
+          </text>
+          <text x="278" y="165" font-size="12" fill="#0c4a6e">
+            - audit hooks
+          </text>
 
-          <rect x="505" y="65" width="210" height="185" rx="8" fill="#fff7ed" stroke="#fdba74" />
-          <text x="518" y="92" font-size="14" fill="#7c2d12">Trusted UI path</text>
-          <text x="518" y="114" font-size="12" fill="#7c2d12">- show DTBS/R</text>
-          <text x="518" y="131" font-size="12" fill="#7c2d12">- capture user intent</text>
-          <text x="518" y="148" font-size="12" fill="#7c2d12">- protect VAD entry</text>
+          <rect
+            x="505"
+            y="65"
+            width="210"
+            height="185"
+            rx="8"
+            fill="#fff7ed"
+            stroke="#fdba74"
+          />
+          <text x="518" y="92" font-size="14" fill="#7c2d12">
+            Trusted UI path
+          </text>
+          <text x="518" y="114" font-size="12" fill="#7c2d12">
+            - show DTBS/R
+          </text>
+          <text x="518" y="131" font-size="12" fill="#7c2d12">
+            - capture user intent
+          </text>
+          <text x="518" y="148" font-size="12" fill="#7c2d12">
+            - protect VAD entry
+          </text>
 
-          <rect x="735" y="65" width="210" height="185" rx="8" fill="#f0fdf4" stroke="#86efac" />
-          <text x="748" y="92" font-size="14" fill="#14532d">Signature app (SCA)</text>
-          <text x="748" y="114" font-size="12" fill="#14532d">- build DTBS</text>
-          <text x="748" y="131" font-size="12" fill="#14532d">- request sign</text>
-          <text x="748" y="148" font-size="12" fill="#14532d">- validate output</text>
+          <rect
+            x="735"
+            y="65"
+            width="210"
+            height="185"
+            rx="8"
+            fill="#f0fdf4"
+            stroke="#86efac"
+          />
+          <text x="748" y="92" font-size="14" fill="#14532d">
+            Signature app (SCA)
+          </text>
+          <text x="748" y="114" font-size="12" fill="#14532d">
+            - build DTBS
+          </text>
+          <text x="748" y="131" font-size="12" fill="#14532d">
+            - request sign
+          </text>
+          <text x="748" y="148" font-size="12" fill="#14532d">
+            - validate output
+          </text>
         </svg>
         <figcaption>
           The full phone is not automatically the TOE. The evaluated boundary
@@ -289,11 +441,43 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Annex II(1)(a)</td><td>SCD confidentiality.</td><td>Keep signing key only in secure hardware boundary.</td><td>Annex II(1)(a) [[EIDAS910]]</td></tr>
-          <tr><td>Annex II(1)(b)</td><td>SCD practically unique.</td><td>On-device key generation with robust entropy and key identity control.</td><td>Annex II(1)(b) [[EIDAS910]]</td></tr>
-          <tr><td>Annex II(1)(c)</td><td>SCD non-derivability and anti-forgery.</td><td>Certified algorithms plus side-channel/fault defenses.</td><td>Annex II(1)(c) [[EIDAS910]]</td></tr>
-          <tr><td>Annex II(1)(d)</td><td>Signatory protection against others.</td><td>Strong local auth and anti-hammering tied to signing command.</td><td>Annex II(1)(d) [[EIDAS910]]</td></tr>
-          <tr><td>Annex II(2)</td><td>No silent DTBS alteration; show data before signing.</td><td>Trusted display and explicit user intent capture before release.</td><td>Annex II(2) [[EIDAS910]]</td></tr>
+          <tr>
+            <td>Annex II(1)(a)</td>
+            <td>SCD confidentiality.</td>
+            <td>Keep signing key only in secure hardware boundary.</td>
+            <td>Annex II(1)(a) [[EIDAS910]]</td>
+          </tr>
+          <tr>
+            <td>Annex II(1)(b)</td>
+            <td>SCD practically unique.</td>
+            <td>
+              On-device key generation with robust entropy and key identity
+              control.
+            </td>
+            <td>Annex II(1)(b) [[EIDAS910]]</td>
+          </tr>
+          <tr>
+            <td>Annex II(1)(c)</td>
+            <td>SCD non-derivability and anti-forgery.</td>
+            <td>Certified algorithms plus side-channel/fault defenses.</td>
+            <td>Annex II(1)(c) [[EIDAS910]]</td>
+          </tr>
+          <tr>
+            <td>Annex II(1)(d)</td>
+            <td>Signatory protection against others.</td>
+            <td>
+              Strong local auth and anti-hammering tied to signing command.
+            </td>
+            <td>Annex II(1)(d) [[EIDAS910]]</td>
+          </tr>
+          <tr>
+            <td>Annex II(2)</td>
+            <td>No silent DTBS alteration; show data before signing.</td>
+            <td>
+              Trusted display and explicit user intent capture before release.
+            </td>
+            <td>Annex II(2) [[EIDAS910]]</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -302,11 +486,24 @@
       <h2>Local-Signing PP Baseline Used Here</h2>
       <ul>
         <li>Core PP: SSCD Part 2 (key generation) [[PPSSCD2]].</li>
-        <li>Extension PP: SSCD Part 5 (trusted communication with SCA) [[PPSSCD5]].</li>
+        <li>
+          Extension PP: SSCD Part 5 (trusted communication with SCA)
+          [[PPSSCD5]].
+        </li>
         <li>QSCD application note for this PP family [[PPAPPNOTE]].</li>
-        <li>CC framework basis: ISO/IEC 15408 Parts 1-3 [[CCPART1]] [[CCPART2]] [[CCPART3]] [[ISO154081]] [[ISO154082]] [[ISO154083]].</li>
-        <li>Official EN 419 241 publication records (CEN/CENELEC): Part 1 [[EN419241_1REF]], Part 2 [[EN419241_2REF]], Part 5 [[EN419241_5REF]], plus the catalogue entry point [[EN419241CAT]].</li>
-        <li>Related European standards discovery entry points [[CENSEARCH]] [[ETSISTD]].</li>
+        <li>
+          CC framework basis: ISO/IEC 15408 Parts 1-3 [[CCPART1]] [[CCPART2]]
+          [[CCPART3]] [[ISO154081]] [[ISO154082]] [[ISO154083]].
+        </li>
+        <li>
+          Official EN 419 241 publication records (CEN/CENELEC): Part 1
+          [[EN419241_1REF]], Part 2 [[EN419241_2REF]], Part 5 [[EN419241_5REF]],
+          plus the catalogue entry point [[EN419241CAT]].
+        </li>
+        <li>
+          Related European standards discovery entry points [[CENSEARCH]]
+          [[ETSISTD]].
+        </li>
       </ul>
       <p>
         The mapping in this document is clause-by-clause to keep the path
@@ -368,16 +565,76 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Part 2 §10.2.3.1 FDP_ACC.1/SCD/SVD_Generation</td><td>Access control for key generation objects.</td><td>Policy-gated key generation in TOE.</td><td>Publish role-policy matrix in ST.</td><td>SSCD PP Part 2 §10.2.3.1 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.3.2 FDP_ACF.1/SCD/SVD_Generation</td><td>Attribute-based generation rules.</td><td>Role attributes enforced by secure key manager.</td><td>Add negative authorization tests.</td><td>SSCD PP Part 2 §10.2.3.2 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.3.3 FDP_ACC.1/SVD_Transfer</td><td>Access control for SVD transfer.</td><td>Allow only controlled SVD export endpoint.</td><td>Bind export to enrollment/certification state.</td><td>SSCD PP Part 2 §10.2.3.3 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.3.4 FDP_ACF.1/SVD_Transfer</td><td>Rules for SVD transfer decisions.</td><td>Trusted channel and role checks before release.</td><td>Add explicit deny rules for untrusted channels.</td><td>SSCD PP Part 2 §10.2.3.4 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.3.5 FDP_ACC.1/Signature-creation</td><td>Access control on sign operation.</td><td>Sign command accepted only in authenticated session.</td><td>Require per-signature intent token.</td><td>SSCD PP Part 2 §10.2.3.5 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.3.6 FDP_ACF.1/Signature-creation</td><td>Attribute rules for sign operation.</td><td>Check user role, key status, and policy flags.</td><td>Add default-deny for background requests.</td><td>SSCD PP Part 2 §10.2.3.6 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.3.7 FDP_RIP.1</td><td>Residual information protection.</td><td>Wipe temporary signing buffers after use.</td><td>Include memory-clearing evidence in tests.</td><td>SSCD PP Part 2 §10.2.3.7 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.3.8 FDP_SDI.2/Persistent</td><td>Persistent data integrity monitoring and action.</td><td>Integrity tags over key metadata and policy data.</td><td>Add anti-rollback counters.</td><td>SSCD PP Part 2 §10.2.3.8 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.3.9 FDP_SDI.2/DTBS</td><td>DTBS integrity monitoring and action.</td><td>Hash-bind DTBS/R through signing pipeline.</td><td>Define canonical DTBS/R serialization.</td><td>SSCD PP Part 2 §10.2.3.9 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 5 §9.1.2 FDP_UIT.1/DTBS</td><td>Integrity for DTBS data exchange path.</td><td>Authenticated and integrity-protected SCA-to-TOE channel.</td><td>If opaque channel, wrap DTBS in signed request envelope.</td><td>SSCD PP Part 5 §9.1.2 [[PPSSCD5]]</td></tr>
+          <tr>
+            <td>Part 2 §10.2.3.1 FDP_ACC.1/SCD/SVD_Generation</td>
+            <td>Access control for key generation objects.</td>
+            <td>Policy-gated key generation in TOE.</td>
+            <td>Publish role-policy matrix in ST.</td>
+            <td>SSCD PP Part 2 §10.2.3.1 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.3.2 FDP_ACF.1/SCD/SVD_Generation</td>
+            <td>Attribute-based generation rules.</td>
+            <td>Role attributes enforced by secure key manager.</td>
+            <td>Add negative authorization tests.</td>
+            <td>SSCD PP Part 2 §10.2.3.2 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.3.3 FDP_ACC.1/SVD_Transfer</td>
+            <td>Access control for SVD transfer.</td>
+            <td>Allow only controlled SVD export endpoint.</td>
+            <td>Bind export to enrollment/certification state.</td>
+            <td>SSCD PP Part 2 §10.2.3.3 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.3.4 FDP_ACF.1/SVD_Transfer</td>
+            <td>Rules for SVD transfer decisions.</td>
+            <td>Trusted channel and role checks before release.</td>
+            <td>Add explicit deny rules for untrusted channels.</td>
+            <td>SSCD PP Part 2 §10.2.3.4 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.3.5 FDP_ACC.1/Signature-creation</td>
+            <td>Access control on sign operation.</td>
+            <td>Sign command accepted only in authenticated session.</td>
+            <td>Require per-signature intent token.</td>
+            <td>SSCD PP Part 2 §10.2.3.5 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.3.6 FDP_ACF.1/Signature-creation</td>
+            <td>Attribute rules for sign operation.</td>
+            <td>Check user role, key status, and policy flags.</td>
+            <td>Add default-deny for background requests.</td>
+            <td>SSCD PP Part 2 §10.2.3.6 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.3.7 FDP_RIP.1</td>
+            <td>Residual information protection.</td>
+            <td>Wipe temporary signing buffers after use.</td>
+            <td>Include memory-clearing evidence in tests.</td>
+            <td>SSCD PP Part 2 §10.2.3.7 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.3.8 FDP_SDI.2/Persistent</td>
+            <td>Persistent data integrity monitoring and action.</td>
+            <td>Integrity tags over key metadata and policy data.</td>
+            <td>Add anti-rollback counters.</td>
+            <td>SSCD PP Part 2 §10.2.3.8 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.3.9 FDP_SDI.2/DTBS</td>
+            <td>DTBS integrity monitoring and action.</td>
+            <td>Hash-bind DTBS/R through signing pipeline.</td>
+            <td>Define canonical DTBS/R serialization.</td>
+            <td>SSCD PP Part 2 §10.2.3.9 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 5 §9.1.2 FDP_UIT.1/DTBS</td>
+            <td>Integrity for DTBS data exchange path.</td>
+            <td>Authenticated and integrity-protected SCA-to-TOE channel.</td>
+            <td>If opaque channel, wrap DTBS in signed request envelope.</td>
+            <td>SSCD PP Part 5 §9.1.2 [[PPSSCD5]]</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -396,10 +653,34 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Part 2 §10.2.4.1 FIA_UID.1</td><td>User identification timing.</td><td>Identify signatory context before protected operations.</td><td>Bind identity context to signing session id.</td><td>SSCD PP Part 2 §10.2.4.1 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.4.2 FIA_UAU.1</td><td>User authentication timing.</td><td>Biometric/PIN before sign release.</td><td>Step-up auth for high-risk signatures.</td><td>SSCD PP Part 2 §10.2.4.2 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.4.3 FIA_AFL.1</td><td>Authentication failure handling.</td><td>Retry limits, lockout, secure delay.</td><td>Expose lockout policy as TSF-managed data.</td><td>SSCD PP Part 2 §10.2.4.3 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 5 §9.1.1 FIA_UAU.1 refinement</td><td>Authentication flow adapted for trusted channel/VAD path.</td><td>Use trusted VAD path tied to signing ceremony.</td><td>Add secure attention mode for VAD entry.</td><td>SSCD PP Part 5 §9.1.1 [[PPSSCD5]]</td></tr>
+          <tr>
+            <td>Part 2 §10.2.4.1 FIA_UID.1</td>
+            <td>User identification timing.</td>
+            <td>Identify signatory context before protected operations.</td>
+            <td>Bind identity context to signing session id.</td>
+            <td>SSCD PP Part 2 §10.2.4.1 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.4.2 FIA_UAU.1</td>
+            <td>User authentication timing.</td>
+            <td>Biometric/PIN before sign release.</td>
+            <td>Step-up auth for high-risk signatures.</td>
+            <td>SSCD PP Part 2 §10.2.4.2 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.4.3 FIA_AFL.1</td>
+            <td>Authentication failure handling.</td>
+            <td>Retry limits, lockout, secure delay.</td>
+            <td>Expose lockout policy as TSF-managed data.</td>
+            <td>SSCD PP Part 2 §10.2.4.3 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 5 §9.1.1 FIA_UAU.1 refinement</td>
+            <td>Authentication flow adapted for trusted channel/VAD path.</td>
+            <td>Use trusted VAD path tied to signing ceremony.</td>
+            <td>Add secure attention mode for VAD entry.</td>
+            <td>SSCD PP Part 5 §9.1.1 [[PPSSCD5]]</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -418,16 +699,80 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Part 2 §10.2.5.1 FMT_SMR.1</td><td>Maintain security roles.</td><td>Explicit Admin and Signatory roles in TOE policy engine.</td><td>Do not collapse both roles silently in production.</td><td>SSCD PP Part 2 §10.2.5.1 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.5.2 FMT_SMF.1</td><td>List TOE management functions.</td><td>Declare key lifecycle, auth, recovery, and policy operations.</td><td>Complete all ST assignments from PP application notes.</td><td>SSCD PP Part 2 §10.2.5.2 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.5.3 FMT_MOF.1</td><td>Restrict security function behavior management.</td><td>Only allowed role enables signing function.</td><td>Add immutable event logs for enable/disable actions.</td><td>SSCD PP Part 2 §10.2.5.3 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.5.4 FMT_MSA.1/Admin</td><td>Admin management of security attributes.</td><td>Admin manages enrollment and policy attributes.</td><td>Require authenticated admin channel and approvals.</td><td>SSCD PP Part 2 §10.2.5.4 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.5.5 FMT_MSA.1/Signatory</td><td>Signatory management of security attributes.</td><td>Signatory controls own activation policy attributes.</td><td>Add user-facing policy transparency UI.</td><td>SSCD PP Part 2 §10.2.5.5 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.5.6 FMT_MSA.2</td><td>Accept only secure attribute values.</td><td>Validate attribute schema and allowed ranges.</td><td>Reject weak/default values by policy.</td><td>SSCD PP Part 2 §10.2.5.6 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.5.7 FMT_MSA.3</td><td>Static attribute initialization.</td><td>Secure defaults on key/object creation.</td><td>Demonstrate defaults are non-bypassable.</td><td>SSCD PP Part 2 §10.2.5.7 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.5.8 FMT_MSA.4</td><td>Attribute value inheritance rules.</td><td>Inherited policy remains as strict as parent security context.</td><td>Define deterministic inheritance matrix in ST.</td><td>SSCD PP Part 2 §10.2.5.8 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.5.9 FMT_MTD.1/Admin</td><td>Admin TSF data management.</td><td>Authorized admin updates TSF config data.</td><td>Apply dual control for critical admin changes.</td><td>SSCD PP Part 2 §10.2.5.9 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.5.10 FMT_MTD.1/Signatory</td><td>Signatory TSF data management.</td><td>User controls own signing profile metadata.</td><td>Add signed change records for TSF data updates.</td><td>SSCD PP Part 2 §10.2.5.10 [[PPSSCD2]]</td></tr>
+          <tr>
+            <td>Part 2 §10.2.5.1 FMT_SMR.1</td>
+            <td>Maintain security roles.</td>
+            <td>Explicit Admin and Signatory roles in TOE policy engine.</td>
+            <td>Do not collapse both roles silently in production.</td>
+            <td>SSCD PP Part 2 §10.2.5.1 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.5.2 FMT_SMF.1</td>
+            <td>List TOE management functions.</td>
+            <td>
+              Declare key lifecycle, auth, recovery, and policy operations.
+            </td>
+            <td>Complete all ST assignments from PP application notes.</td>
+            <td>SSCD PP Part 2 §10.2.5.2 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.5.3 FMT_MOF.1</td>
+            <td>Restrict security function behavior management.</td>
+            <td>Only allowed role enables signing function.</td>
+            <td>Add immutable event logs for enable/disable actions.</td>
+            <td>SSCD PP Part 2 §10.2.5.3 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.5.4 FMT_MSA.1/Admin</td>
+            <td>Admin management of security attributes.</td>
+            <td>Admin manages enrollment and policy attributes.</td>
+            <td>Require authenticated admin channel and approvals.</td>
+            <td>SSCD PP Part 2 §10.2.5.4 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.5.5 FMT_MSA.1/Signatory</td>
+            <td>Signatory management of security attributes.</td>
+            <td>Signatory controls own activation policy attributes.</td>
+            <td>Add user-facing policy transparency UI.</td>
+            <td>SSCD PP Part 2 §10.2.5.5 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.5.6 FMT_MSA.2</td>
+            <td>Accept only secure attribute values.</td>
+            <td>Validate attribute schema and allowed ranges.</td>
+            <td>Reject weak/default values by policy.</td>
+            <td>SSCD PP Part 2 §10.2.5.6 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.5.7 FMT_MSA.3</td>
+            <td>Static attribute initialization.</td>
+            <td>Secure defaults on key/object creation.</td>
+            <td>Demonstrate defaults are non-bypassable.</td>
+            <td>SSCD PP Part 2 §10.2.5.7 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.5.8 FMT_MSA.4</td>
+            <td>Attribute value inheritance rules.</td>
+            <td>
+              Inherited policy remains as strict as parent security context.
+            </td>
+            <td>Define deterministic inheritance matrix in ST.</td>
+            <td>SSCD PP Part 2 §10.2.5.8 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.5.9 FMT_MTD.1/Admin</td>
+            <td>Admin TSF data management.</td>
+            <td>Authorized admin updates TSF config data.</td>
+            <td>Apply dual control for critical admin changes.</td>
+            <td>SSCD PP Part 2 §10.2.5.9 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.5.10 FMT_MTD.1/Signatory</td>
+            <td>Signatory TSF data management.</td>
+            <td>User controls own signing profile metadata.</td>
+            <td>Add signed change records for TSF data updates.</td>
+            <td>SSCD PP Part 2 §10.2.5.10 [[PPSSCD2]]</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -446,11 +791,53 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Part 2 §10.2.6.1 FPT_EMSEC.1 (Part 5 names FPT_EMS.1)</td><td>Emanation resistance.</td><td>Use evaluated secure element with side-channel protections.</td><td>If full-phone evidence is weak, narrow TOE to evaluated secure component.</td><td>SSCD PP Part 2 §10.2.6.1 [[PPSSCD2]], Part 5 naming note [[PPSSCD5]]</td></tr>
-          <tr><td>Part 2 §10.2.6.2 FPT_FLS.1</td><td>Fail secure on failure.</td><td>If self-test/integrity check fails, block signing and protect SCD.</td><td>Define exact secure-failure state transitions and test them.</td><td>SSCD PP Part 2 §10.2.6.2 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.6.3 FPT_PHP.1</td><td>Passive detection of physical attack.</td><td>Tamper state checks and secure-boot integrity monitoring.</td><td>Expose measurable tamper state outputs to evaluation evidence.</td><td>SSCD PP Part 2 §10.2.6.3 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.6.4 FPT_PHP.3</td><td>Resistance to physical attack scenarios.</td><td>Active tamper protections in secure processor package.</td><td>Select hardware SKU with public high-assurance claims.</td><td>SSCD PP Part 2 §10.2.6.4 [[PPSSCD2]]</td></tr>
-          <tr><td>Part 2 §10.2.6.5 FPT_TST.1</td><td>Self-test and integrity test functions.</td><td>Power-on and periodic TSF self-tests.</td><td>Publish startup/runtime test coverage in evaluator package.</td><td>SSCD PP Part 2 §10.2.6.5 [[PPSSCD2]]</td></tr>
+          <tr>
+            <td>Part 2 §10.2.6.1 FPT_EMSEC.1 (Part 5 names FPT_EMS.1)</td>
+            <td>Emanation resistance.</td>
+            <td>Use evaluated secure element with side-channel protections.</td>
+            <td>
+              If full-phone evidence is weak, narrow TOE to evaluated secure
+              component.
+            </td>
+            <td>
+              SSCD PP Part 2 §10.2.6.1 [[PPSSCD2]], Part 5 naming note
+              [[PPSSCD5]]
+            </td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.6.2 FPT_FLS.1</td>
+            <td>Fail secure on failure.</td>
+            <td>
+              If self-test/integrity check fails, block signing and protect SCD.
+            </td>
+            <td>
+              Define exact secure-failure state transitions and test them.
+            </td>
+            <td>SSCD PP Part 2 §10.2.6.2 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.6.3 FPT_PHP.1</td>
+            <td>Passive detection of physical attack.</td>
+            <td>Tamper state checks and secure-boot integrity monitoring.</td>
+            <td>
+              Expose measurable tamper state outputs to evaluation evidence.
+            </td>
+            <td>SSCD PP Part 2 §10.2.6.3 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.6.4 FPT_PHP.3</td>
+            <td>Resistance to physical attack scenarios.</td>
+            <td>Active tamper protections in secure processor package.</td>
+            <td>Select hardware SKU with public high-assurance claims.</td>
+            <td>SSCD PP Part 2 §10.2.6.4 [[PPSSCD2]]</td>
+          </tr>
+          <tr>
+            <td>Part 2 §10.2.6.5 FPT_TST.1</td>
+            <td>Self-test and integrity test functions.</td>
+            <td>Power-on and periodic TSF self-tests.</td>
+            <td>Publish startup/runtime test coverage in evaluator package.</td>
+            <td>SSCD PP Part 2 §10.2.6.5 [[PPSSCD2]]</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -469,8 +856,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Part 5 §9.1.3 FTP_ITC.1/VAD</td><td>Trusted channel for VAD/auth path.</td><td>Secure auth path from trusted UI/auth block to TOE.</td><td>Add secure attention and anti-overlay guarantees.</td><td>SSCD PP Part 5 §9.1.3 [[PPSSCD5]]</td></tr>
-          <tr><td>Part 5 §9.1.4 FTP_ITC.1/DTBS</td><td>Trusted channel for DTBS path.</td><td>Authenticated integrity-protected DTBS channel from SCA to TOE.</td><td>Bind DTBS hash shown to user with final sign command.</td><td>SSCD PP Part 5 §9.1.4 [[PPSSCD5]]</td></tr>
+          <tr>
+            <td>Part 5 §9.1.3 FTP_ITC.1/VAD</td>
+            <td>Trusted channel for VAD/auth path.</td>
+            <td>Secure auth path from trusted UI/auth block to TOE.</td>
+            <td>Add secure attention and anti-overlay guarantees.</td>
+            <td>SSCD PP Part 5 §9.1.3 [[PPSSCD5]]</td>
+          </tr>
+          <tr>
+            <td>Part 5 §9.1.4 FTP_ITC.1/DTBS</td>
+            <td>Trusted channel for DTBS path.</td>
+            <td>
+              Authenticated integrity-protected DTBS channel from SCA to TOE.
+            </td>
+            <td>Bind DTBS hash shown to user with final sign command.</td>
+            <td>SSCD PP Part 5 §9.1.4 [[PPSSCD5]]</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -490,11 +891,40 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>ASE_* (ST evaluation)</td><td>Complete ST with conformance claims, objectives, requirements, and TOE summary specification.</td></tr>
-          <tr><td>ADV_*</td><td>Architecture, functional spec, implementation representation, and modular design evidence.</td></tr>
-          <tr><td>ALC_*</td><td>Lifecycle, configuration management, delivery, and development security evidence.</td></tr>
-          <tr><td>ATE_*</td><td>Coverage, design-based tests, and independent testing samples.</td></tr>
-          <tr><td>AVA_VAN.5</td><td>Advanced methodical vulnerability analysis and penetration testing.</td></tr>
+          <tr>
+            <td>ASE_* (ST evaluation)</td>
+            <td>
+              Complete ST with conformance claims, objectives, requirements, and
+              TOE summary specification.
+            </td>
+          </tr>
+          <tr>
+            <td>ADV_*</td>
+            <td>
+              Architecture, functional spec, implementation representation, and
+              modular design evidence.
+            </td>
+          </tr>
+          <tr>
+            <td>ALC_*</td>
+            <td>
+              Lifecycle, configuration management, delivery, and development
+              security evidence.
+            </td>
+          </tr>
+          <tr>
+            <td>ATE_*</td>
+            <td>
+              Coverage, design-based tests, and independent testing samples.
+            </td>
+          </tr>
+          <tr>
+            <td>AVA_VAN.5</td>
+            <td>
+              Advanced methodical vulnerability analysis and penetration
+              testing.
+            </td>
+          </tr>
         </tbody>
       </table>
       <p>
@@ -507,20 +937,98 @@
       <h2>Illustration: End-to-End Certification Flow</h2>
       <figure class="illus">
         <svg viewBox="0 0 980 170" role="img" aria-label="Certification flow">
-          <rect x="20" y="52" width="155" height="68" rx="8" fill="#eef2ff" stroke="#a5b4fc" />
-          <text x="34" y="79" font-size="12" fill="#1e3a8a">1. Define TOE boundary</text>
-          <rect x="205" y="52" width="155" height="68" rx="8" fill="#ecfeff" stroke="#67e8f9" />
-          <text x="219" y="79" font-size="12" fill="#0c4a6e">2. Write ST + claims</text>
-          <rect x="390" y="52" width="175" height="68" rx="8" fill="#fff7ed" stroke="#fdba74" />
-          <text x="404" y="79" font-size="12" fill="#7c2d12">3. Produce SAR evidence</text>
-          <rect x="595" y="52" width="155" height="68" rx="8" fill="#f0fdf4" stroke="#86efac" />
-          <text x="609" y="79" font-size="12" fill="#14532d">4. CEM lab evaluation</text>
-          <rect x="780" y="52" width="180" height="68" rx="8" fill="#fef2f2" stroke="#fca5a5" />
-          <text x="794" y="79" font-size="12" fill="#7f1d1d">5. Scheme certification</text>
-          <line x1="175" y1="86" x2="205" y2="86" stroke="#334e68" stroke-width="2" />
-          <line x1="360" y1="86" x2="390" y2="86" stroke="#334e68" stroke-width="2" />
-          <line x1="565" y1="86" x2="595" y2="86" stroke="#334e68" stroke-width="2" />
-          <line x1="750" y1="86" x2="780" y2="86" stroke="#334e68" stroke-width="2" />
+          <rect
+            x="20"
+            y="52"
+            width="155"
+            height="68"
+            rx="8"
+            fill="#eef2ff"
+            stroke="#a5b4fc"
+          />
+          <text x="34" y="79" font-size="12" fill="#1e3a8a">
+            1. Define TOE boundary
+          </text>
+          <rect
+            x="205"
+            y="52"
+            width="155"
+            height="68"
+            rx="8"
+            fill="#ecfeff"
+            stroke="#67e8f9"
+          />
+          <text x="219" y="79" font-size="12" fill="#0c4a6e">
+            2. Write ST + claims
+          </text>
+          <rect
+            x="390"
+            y="52"
+            width="175"
+            height="68"
+            rx="8"
+            fill="#fff7ed"
+            stroke="#fdba74"
+          />
+          <text x="404" y="79" font-size="12" fill="#7c2d12">
+            3. Produce SAR evidence
+          </text>
+          <rect
+            x="595"
+            y="52"
+            width="155"
+            height="68"
+            rx="8"
+            fill="#f0fdf4"
+            stroke="#86efac"
+          />
+          <text x="609" y="79" font-size="12" fill="#14532d">
+            4. CEM lab evaluation
+          </text>
+          <rect
+            x="780"
+            y="52"
+            width="180"
+            height="68"
+            rx="8"
+            fill="#fef2f2"
+            stroke="#fca5a5"
+          />
+          <text x="794" y="79" font-size="12" fill="#7f1d1d">
+            5. Scheme certification
+          </text>
+          <line
+            x1="175"
+            y1="86"
+            x2="205"
+            y2="86"
+            stroke="#334e68"
+            stroke-width="2"
+          />
+          <line
+            x1="360"
+            y1="86"
+            x2="390"
+            y2="86"
+            stroke="#334e68"
+            stroke-width="2"
+          />
+          <line
+            x1="565"
+            y1="86"
+            x2="595"
+            y2="86"
+            stroke="#334e68"
+            stroke-width="2"
+          />
+          <line
+            x1="750"
+            y1="86"
+            x2="780"
+            y2="86"
+            stroke="#334e68"
+            stroke-width="2"
+          />
         </svg>
       </figure>
     </section>
@@ -555,11 +1063,41 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Trusted display proof for DTBS review before signing</td><td>Implement dedicated trusted UI mode and cryptographically bind displayed DTBS hash to signature command.</td></tr>
-          <tr><td>Strong physical/emanation evidence at full-phone scope</td><td>Narrow TOE to secure element/enclave and compose with minimal trusted software boundary.</td></tr>
-          <tr><td>Admin/signatory role separation on consumer OS</td><td>Define explicit role model in ST and enforce role-restricted management APIs.</td></tr>
-          <tr><td>Opaque secure-channel internals in commodity stacks</td><td>Add explicit signed request/response wrapper between SCA and TOE channel endpoints.</td></tr>
-          <tr><td>Insufficient AVA_VAN.5 depth evidence</td><td>Run pre-cert penetration plan covering TEE escape, overlay attack, side-channel, and fault injection vectors.</td></tr>
+          <tr>
+            <td>Trusted display proof for DTBS review before signing</td>
+            <td>
+              Implement dedicated trusted UI mode and cryptographically bind
+              displayed DTBS hash to signature command.
+            </td>
+          </tr>
+          <tr>
+            <td>Strong physical/emanation evidence at full-phone scope</td>
+            <td>
+              Narrow TOE to secure element/enclave and compose with minimal
+              trusted software boundary.
+            </td>
+          </tr>
+          <tr>
+            <td>Admin/signatory role separation on consumer OS</td>
+            <td>
+              Define explicit role model in ST and enforce role-restricted
+              management APIs.
+            </td>
+          </tr>
+          <tr>
+            <td>Opaque secure-channel internals in commodity stacks</td>
+            <td>
+              Add explicit signed request/response wrapper between SCA and TOE
+              channel endpoints.
+            </td>
+          </tr>
+          <tr>
+            <td>Insufficient AVA_VAN.5 depth evidence</td>
+            <td>
+              Run pre-cert penetration plan covering TEE escape, overlay attack,
+              side-channel, and fault injection vectors.
+            </td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -572,7 +1110,5 @@
         explicit, and ST/SAR evidence is complete.
       </p>
     </section>
-
   </body>
 </html>
-
